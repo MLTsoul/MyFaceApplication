@@ -455,9 +455,9 @@ public class MyWatchFace extends CanvasWatchFaceService {
             day = mCalendar.get(Calendar.DAY_OF_MONTH);
             // 如果日期与上次相同，不重新计算日期
             if (day != oldDay && month != oldMonth && year != oldYear) {
-                year = oldYear;
-                month = oldMonth;
-                day = oldDay;
+                oldYear = year;
+                oldMonth = month;
+                oldDay = day;
                 dayWeek = mCalendar.get(Calendar.DAY_OF_WEEK);
                 timeSb.delete(0, timeSb.length());
                 timeSb.append(month < 10 ? "0" : "").append(month).append("月")
