@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">MyFaceApplication</string>
     <string name="message">Watch face tapped</string>
-    <string name="my_analog_name">简约灰色表盘</string>
+    <string name="my_analog_name">简约灰</string>
 </resources>
