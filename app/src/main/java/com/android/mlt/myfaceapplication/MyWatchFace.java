@@ -512,7 +512,7 @@ public class MyWatchFace extends CanvasWatchFaceService {
             if (noticeNumber > 0) {
                 // 绘制未读通知数量
                 notice.delete(0, notice.length());
-                notice.append(getUnreadCount()).append(" 条新通知");
+                notice.append(noticeNumber).append(" 条新通知");
                 noticeStr = notice.toString();
                 canvas.drawText(noticeStr
                         , (dataTextWidth - mMinutePaint.measureText(noticeStr)) / 2
@@ -522,7 +522,7 @@ public class MyWatchFace extends CanvasWatchFaceService {
 
 
             /*
-             * These calculations reflect the rotation in degrees per unit of time, e.g.,
+             * 获取时间
              * 360 / 60 = 6 and 360 / 12 = 30.
              */
             final float seconds =
@@ -535,7 +535,7 @@ public class MyWatchFace extends CanvasWatchFaceService {
             final float hoursRotation = (mCalendar.get(Calendar.HOUR) * 30) + hourHandOffset;
 
             /*
-             * Save the canvas state before we can begin to rotate it.
+             * 保存旋转前画布状态
              */
             canvas.save();
 
@@ -556,8 +556,7 @@ public class MyWatchFace extends CanvasWatchFaceService {
                     mMinutePaint);
 
             /*
-             * Ensure the "seconds" hand is drawn only when we are in interactive mode.
-             * Otherwise, we only update the watch face once a minute.
+             * 根据是否为微光状态绘制秒针
              */
             if (!mAmbient) {
                 canvas.rotate(secondsRotation - minutesRotation, mCenterX, mCenterY);
@@ -577,7 +576,9 @@ public class MyWatchFace extends CanvasWatchFaceService {
                     CENTER_GAP_AND_CIRCLE_RADIUS,
                     mTickAndCirclePaint);
 
-            /* Restore the canvas' original orientation. */
+            /*
+             * 还原画布状态
+             */
             canvas.restore();
         }
 
